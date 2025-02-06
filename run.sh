@@ -58,7 +58,7 @@ mvn compile exec:java -e \
   -Dexec.args="\
     --project=${PROJECT_ID} \
     --runner=DataflowRunner \
-    --experiments=use_runner_v2
+    --experiments=use_runner_v2 \
     --numWorkers=1 \
     --maxNumWorkers=1 \
     --region=${REGION} \
