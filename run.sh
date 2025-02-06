@@ -58,8 +58,8 @@ mvn compile exec:java -e \
   -Dexec.args="\
     --project=${PROJECT_ID} \
     --runner=DataflowRunner \
-    --numWorkers=5 \
-    --maxNumWorkers=10 \
+    --numWorkers=1 \
+    --maxNumWorkers=1 \
     --region=${REGION} \
     --serviceAccount=${SERVICE_ACCOUNT} \
     --gcpTempLocation=${DATAFLOW_TEMP_BUCKET}/dftemp/ \

@@ -134,7 +134,7 @@ public class SpannerToBigQueryUsingCdc {
     ordersTableReference.setProjectId(options.getBigQueryProjectId());
     ordersTableReference.setTableId(options.getBigQueryOrdersTableName());
     ordersTableReference.setDatasetId(options.getBigQueryDataset());
-    
+
 
     WriteResult writeResult =
         dataChangeRecords
