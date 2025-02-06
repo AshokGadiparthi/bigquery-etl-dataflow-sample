@@ -69,5 +69,6 @@ mvn compile exec:java -e \
     --spannerDatabaseId=fulfillment \
     --spannerOrdersStreamId=orders_changes \
     --bigQueryProjectId=animated-vector-449513-u1 \
-    --bigQueryDataset=spanner_to_bigquery
+    --bigQueryDataset=spanner_to_bigquery \
+    --bigQueryOrdersTableName=order
     "
