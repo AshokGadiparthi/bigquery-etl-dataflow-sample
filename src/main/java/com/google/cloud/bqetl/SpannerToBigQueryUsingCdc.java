@@ -135,6 +135,8 @@ public class SpannerToBigQueryUsingCdc {
     ordersTableReference.setTableId(options.getBigQueryOrdersTableName());
     ordersTableReference.setDatasetId(options.getBigQueryDataset());
 
+    ordersTableReference.get
+
     WriteResult writeResult =
         dataChangeRecords
             .apply("To OrderMutations", ParDo.of(new DataChangeRecordToOrderMutation()))
@@ -142,7 +144,7 @@ public class SpannerToBigQueryUsingCdc {
             .apply(
                 "Store Orders",
                 BigQueryIO.<OrderMutation>write()
-                    .to(ordersTableReference)
+                    .to("animated-vector-449513-u1.spanner_to_bigquery.order")
                     .withCreateDisposition(CreateDisposition.CREATE_NEVER)
                     .withWriteDisposition(WriteDisposition.WRITE_APPEND)
                     .withMethod(Write.Method.STORAGE_API_AT_LEAST_ONCE)
