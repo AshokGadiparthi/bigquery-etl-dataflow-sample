@@ -134,6 +134,12 @@
       <groupId>org.apache.beam</groupId>
       <artifactId>beam-sdks-java-core</artifactId>
       <version>${beam-version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.beam</groupId>
+          <artifactId>beam-sdks-java-testing</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
