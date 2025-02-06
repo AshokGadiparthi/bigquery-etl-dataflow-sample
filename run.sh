@@ -27,6 +27,9 @@ case "$1" in
   CLASS_NAME=BQETLSimple
   USE_LOOKUPS="--performLookups"
   ;;
+"cdc")
+  CLASS_NAME=SpannerToBigQueryUsingCdc
+  ;;
 *)
   echo "Pipeline type not specified (simple|simple-with-lookups|nested)"
   exit
@@ -54,14 +57,17 @@ mvn compile exec:java -e \
   -Dexec.mainClass=com.google.cloud.bqetl.${CLASS_NAME} \
   -Dexec.args="\
     --project=${PROJECT_ID} \
-    --loadingBucketURL=gs://solutions-public-assets/bqetl  \
     --runner=DataflowRunner \
     --numWorkers=5 \
     --maxNumWorkers=10 \
-    --bigQueryTablename=${PROJECT_ID}:${DATASET}.${DESTINATION_TABLE} \
     --region=${REGION} \
     --serviceAccount=${SERVICE_ACCOUNT} \
     --gcpTempLocation=${DATAFLOW_TEMP_BUCKET}/dftemp/ \
     --tempLocation=${DATAFLOW_TEMP_BUCKET}/temp/ \
-    ${USE_LOOKUPS} \
+    --spannerProjectId=animated-vector-449513-u1 \
+    --spannerInstanceId=main \
+    --spannerDatabaseId=fulfillment \
+    --spannerOrdersStreamId=orders_changes \
+    --bigQueryProjectId=animated-vector-449513-u1 \
+    --bigQueryDataset=spanner_to_bigquery
     "
