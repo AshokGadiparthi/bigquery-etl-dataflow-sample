@@ -22,21 +22,16 @@ import java.util.Objects;
 public class Order {
 
   /** Order status. */
-  public enum Status {
-    NEW,
-    SCHEDULED,
-    PROCESSED,
-    DELETED
-  }
+
 
   private long id;
-  private Status status;
+  private String status;
   private String description;
 
   public Order() {}
 
   /** Constructor to create a fully instantiated order. */
-  public Order(long id, Status status, String description) {
+  public Order(long id, String status, String description) {
     this.id = id;
     this.description = description;
     this.status = status;
@@ -50,11 +45,11 @@ public class Order {
     this.id = id;
   }
 
-  public Status getStatus() {
+  public String getStatus() {
     return status;
   }
 
-  public void setStatus(Status status) {
+  public void setStatus(String status) {
     this.status = status;
   }
 

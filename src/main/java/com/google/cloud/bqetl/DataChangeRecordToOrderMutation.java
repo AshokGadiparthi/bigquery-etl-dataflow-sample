@@ -17,7 +17,6 @@
 package com.google.cloud.bqetl;
 
 import com.google.cloud.bqetl.model.Order;
-import com.google.cloud.bqetl.model.Order.Status;
 import com.google.cloud.bqetl.model.OrderMutation;
 import org.apache.beam.sdk.io.gcp.bigquery.RowMutationInformation;
 import org.apache.beam.sdk.io.gcp.bigquery.RowMutationInformation.MutationType;
@@ -52,12 +51,12 @@ class DataChangeRecordToOrderMutation extends DoFn<DataChangeRecord, OrderMutati
 
       switch (record.getModType()) {
         case DELETE:
-          order.setStatus(Status.DELETED);
+          order.setStatus("Deleted");
           order.setDescription("Deleted order");
           break;
 
         default:
-          order.setStatus(Status.valueOf(valueJson.getString("status")));
+          order.setStatus(valueJson.getString("status"));
           order.setDescription(valueJson.getString("description"));
           break;
       }

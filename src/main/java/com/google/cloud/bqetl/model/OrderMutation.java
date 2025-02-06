@@ -16,7 +16,6 @@
 
 package com.google.cloud.bqetl.model;
 
-import com.google.cloud.bqetl.model.Order.Status;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -49,7 +48,7 @@ public class OrderMutation {
             @UnknownKeyFor @NonNull @Initialized IOException {
       Order order = value.getOrder();
       VarLongCoder.of().encode(order.getId(), outStream);
-      StringUtf8Coder.of().encode(order.getStatus().name(), outStream);
+      StringUtf8Coder.of().encode(order.getStatus(), outStream);
       StringUtf8Coder.of().encode(order.getDescription(), outStream);
 
       RowMutationInformation rowMutationInformation = value.getMutationInformation();
@@ -63,7 +62,7 @@ public class OrderMutation {
             @UnknownKeyFor @NonNull @Initialized IOException {
       Order order = new Order();
       order.setId(VarLongCoder.of().decode(inStream));
-      order.setStatus(Status.valueOf(StringUtf8Coder.of().decode(inStream)));
+      order.setStatus(StringUtf8Coder.of().decode(inStream));
       order.setDescription(StringUtf8Coder.of().decode(inStream));
 
       long sequenceNumber = VarLongCoder.of().decode(inStream);
